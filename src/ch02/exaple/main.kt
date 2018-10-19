@@ -1,6 +1,6 @@
-package chapter2.exaple
+package ch02.exaple
 
-import chapter2.shapes.crateRandomRectangle
+import ch02.shapes.crateRandomRectangle
 
 fun main(args:Array<String>){
     println(crateRandomRectangle().isSquare)

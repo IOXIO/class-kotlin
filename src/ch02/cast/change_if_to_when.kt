@@ -1,4 +1,4 @@
-package chapter2.cast
+package ch02.cast
 
 //위에 if를 아래에 when으로 리펙토링
 

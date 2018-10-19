@@ -1,3 +1,4 @@
+package ch02
 
 import java.io.BufferedReader
 import java.util.*
@@ -102,7 +103,7 @@ var answer = 42
  *
  * 아래에 코드는 코틀린으로 변환한 Person클래스이다
  * */
- //class Person(val name: String)
+//class Person(val name: String)
 
 
 /**
@@ -175,14 +176,14 @@ enum class Color(val r : Int, val g: Int, val b: Int){
  * 기본적으로 java의 switch문과 비슷하다 다만 case별로 break를 넣지 않아도 된다는 차이가 있다
  * */
 fun getMnemonic(color: Color) =
-    when(color){
-        Color.RED -> "Richard"
-        Color.ORANGE -> "Of"
-        Color.YELLOW -> "York"
-        Color.GRREN -> "Gave"
-        Color.BLUE -> "Battle"
-        Color.INDIGO -> "In"
-    }
+        when(color){
+            Color.RED -> "Richard"
+            Color.ORANGE -> "Of"
+            Color.YELLOW -> "York"
+            Color.GRREN -> "Gave"
+            Color.BLUE -> "Battle"
+            Color.INDIGO -> "In"
+        }
 
 fun getWarmth(color : Color) =
         when(color){
@@ -198,12 +199,12 @@ fun getWarmth(color : Color) =
 //    println(getWarmth(Color.ORANGE))
 //}
 /**
-* enum 상수 값을 임포트해서 enum 클래스 수식자 없이 사용가능하다
-* ex) RED -> "Warm"
-*
+ * enum 상수 값을 임포트해서 enum 클래스 수식자 없이 사용가능하다
+ * ex) RED -> "Warm"
+ *
  * 매치 조건이 없을 경우
  * else -> throw Exception("Diry color") //조건이 없으면 이 문장이 실행 된다*
-* */
+ * */
 
 
 /**
@@ -212,12 +213,12 @@ fun getWarmth(color : Color) =
  * */
 
 fun mixOptimiazed(c1: Color, c2: Color) =
-   when {
-       (c1 === Color.RED && c2 === Color.YELLOW || c1 === Color.YELLOW && c2 === Color.RED) -> "ORANGE"
-       (c1 === Color.YELLOW && c2 === Color.BLUE || c1 === Color.BLUE && c2 === Color.YELLOW) -> "GREEN"
-       (c1 === Color.BLUE && c2 === Color.YELLOW || c1 === Color.YELLOW && c2 === Color.RED) -> "ORANGE"
-       else -> throw Exception("Dirty color")
-   }
+        when {
+            (c1 === Color.RED && c2 === Color.YELLOW || c1 === Color.YELLOW && c2 === Color.RED) -> "ORANGE"
+            (c1 === Color.YELLOW && c2 === Color.BLUE || c1 === Color.BLUE && c2 === Color.YELLOW) -> "GREEN"
+            (c1 === Color.BLUE && c2 === Color.YELLOW || c1 === Color.YELLOW && c2 === Color.RED) -> "ORANGE"
+            else -> throw Exception("Dirty color")
+        }
 
 //fun main(args:Array<String>){
 //    println(mixOptimiazed(Color.BLUE,Color.YELLOW));
@@ -324,4 +325,3 @@ fun readNumber(reader: BufferedReader) : Int?{ //함수가 던질수 있는 예�
 //    val reader = BufferedReader(StringReader("239"))
 //    println(readNumber(reader))
 //}
-

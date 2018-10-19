@@ -1,6 +1,5 @@
 //코드를 왜이렇게 꼬는지 잘 모르겟음
-
-package chapter2.cast
+package ch02.cast
 interface Expr
 
 class Num(val value :Int) : Expr

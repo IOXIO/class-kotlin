@@ -1,4 +1,4 @@
-package chapter2.shapes
+package ch02.shapes
 
 import java.util.*
 
