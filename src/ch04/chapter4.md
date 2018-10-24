@@ -92,18 +92,20 @@ interface Clickable {
 
 open class RichButton : Clickable { // 다른 클래스가 상속 받을 수 있음
 
-	fun disable() {}
+	fun disable() {} // 1
     
-	open fun animate() {}
+	open fun animate() {} // 2
   	
-   	override fun click() {}
+   	override fun click() {} // 3
 
 }
 ```
 
-자식 클래스가 override 할 수 없다.
-자식 클래스가 override 할 수 있다.
-자식 클래스가 또 다시 override 할 수 있다. (override 함수는 기본값이 open이다.)
+(1)자식 클래스가 override 할 수 없다.
+
+(2)자식 클래스가 override 할 수 있다.
+
+(3)자식 클래스가 또 다시 override 할 수 있다. (override 함수는 기본값이 open이다.)
 
 만약, override한 함수를 자식 클래스에서 다시 override하지 못하게 하려면? 앞에 final을 붙여준다.
 
@@ -120,8 +122,11 @@ open class RichButton : Clickable {
 클래스 내에서 선언된 멤버의 경우
 
 `private`: 이 클래스 안에서만 접근 가능
+
 `protected`: 하위 클래스에서 접근 가능
+
 `internal`: 모듈 단위로 접근 가능 (자바와 다른점 / 새로생김)
+
 `public`: 해당 파일의 모든 클래스에서 접근 가능
 
 ```
@@ -153,7 +158,10 @@ class Unrelated(o: Outer){
 #### 4.1.4 내부 클래스
 
 코틀린에서는 내부 클래스를 정의하면 기본적으로 **static class**가 됩니다.
-따라서, 내부 클래스에서 외부 클래스의 변수나 함수에 접근할 수 없습니다.
+따라서, 내부 클래스에서 외부 클래스의 변수나 함수에 접근할 수 없다.
+
+*static은 정적이라는 뜻으로, 메모리에 미리 공간을 할당해 놓는 것을 뜻한다. 
+즉, 인스턴스(객체)를 생성하기 전에 미리 메모리에 올려놔 고정시킨다는 뜻.
 
 ```
 class Outer {
@@ -373,6 +381,7 @@ fun main(args: Array<String>) {
     val cset = CountingSet<Int>()
     cset.addAll(listOf(1, 1, 2))
     println("${cset.objectsAdded} objects were added, ${cset.size} remain")
+    // 3 objects were added, 2 remain
 }
 ```
 CountingSet 함수는 MutableCollection을 상속받으나, innerSet에 해당 구현을 위임한다.
