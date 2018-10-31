@@ -8,22 +8,22 @@
        	-상속제어 변경자
     	-추상 클래스
        	-봉인된 클래스
-    
+
     4-2 생성자와 프로퍼티를 갖는 클래스
     	-주생성자
        	-부생성자
-        
+
    	4-3 컴파일러가 생성한 메소드: 데이터 클래스와 클래스 위임
     	-toString()
        	-equals()
        	-hashCode()
-        
+
     4-4 Object 키워드: 클래스 선언과 인스턴스 생성
     	-싱글턴
       	-동반객체
        	-무명객체
-        
-  
+
+
 # 4-1. 클래스 계층 정의
 
 코틀린은 Java와 같은 형태의 상속개념을 갖는다.
@@ -32,7 +32,7 @@
 하지만 실용성을 강조한 언어인만큼 자바에서 불필요하다고 생각되는 부분들은 과감하게 배제된 부분이 보입니다.
 ex) class의 기본값이 final이면서 public
 
-```md
+```
 # Kotlin
 class 클래스명 constructor(변수) {}
 or
@@ -65,7 +65,7 @@ fun main(args: Array){
 ```
 interface 키워드를 이용해 interface 정의하고, 이를 구현하는 클래스는 콜론(:)을 이용한다.
 그리고 자식 클래스에서 부모의 함수를 override하려면 override라는 키워드를 반드시 사용해야 한다.
-자바에서의 @Override 어노테이션은 옵션이지만, 코틀린은 필수라는 점!   
+자바에서의 @Override 어노테이션은 옵션이지만, 코틀린은 필수라는 점!
 
 
 #### 4.1.2 class 한정자
@@ -80,7 +80,7 @@ interface 키워드를 이용해 interface 정의하고, 이를 구현하는 클
 	2.상속이 가능한 class로 만들려면 open 키워드를 명시적으로 붙여야하는 것
 
 *취약한 기반 클래스(Fragile Base Class)
-부모 클래스가 명확하게 상속하는 방법과 규칙에 대해 정의하지 않는다면 해당 부모를 상속받는 자식들은 부모 클래스 작성당시의 의도와 다르게 상속받아 사용될 수 있다. 
+부모 클래스가 명확하게 상속하는 방법과 규칙에 대해 정의하지 않는다면 해당 부모를 상속받는 자식들은 부모 클래스 작성당시의 의도와 다르게 상속받아 사용될 수 있다.
 
 이런 경우 부모 클래스가 바뀌면 하위 클래스가 영향을 받아 side-effect 발생하는 경우가 발생한다. (부모 클래스 변경시 이를 상속받는 모든 하위 클래스의 구현을 일일이 확인할수 없으므로 발생)
 
@@ -93,9 +93,9 @@ interface Clickable {
 open class RichButton : Clickable { // 다른 클래스가 상속 받을 수 있음
 
 	fun disable() {} // 1
-    
+
 	open fun animate() {} // 2
-  	
+
    	override fun click() {} // 3
 
 }
@@ -111,7 +111,7 @@ open class RichButton : Clickable { // 다른 클래스가 상속 받을 수 있
 
 ```
 open class RichButton : Clickable {
-  	
+
    	final override fun click() {}
 
 }
@@ -135,7 +135,7 @@ open class Outer {
 	protected open val b = 2
   	internal val c = 3
   	val d = 4
-    
+
     protected class Nested {
     	public val e: Int = 5
     }
@@ -149,7 +149,7 @@ class Subclass : Outer() {
 
 class Unrelated(o: Outer){
 	// o.a, o.b 접근 불가
-   	// o.c, o.d 접근 가능	
+   	// o.c, o.d 접근 가능
    	// Outer.Nested()에 접근 불가 (Nested::e에도 접근 불가)
 }
 
@@ -160,16 +160,16 @@ class Unrelated(o: Outer){
 코틀린에서는 내부 클래스를 정의하면 기본적으로 **static class**가 됩니다.
 따라서, 내부 클래스에서 외부 클래스의 변수나 함수에 접근할 수 없다.
 
-*static은 정적이라는 뜻으로, 메모리에 미리 공간을 할당해 놓는 것을 뜻한다. 
+*static은 정적이라는 뜻으로, 메모리에 미리 공간을 할당해 놓는 것을 뜻한다.
 즉, 인스턴스(객체)를 생성하기 전에 미리 메모리에 올려놔 고정시킨다는 뜻.
 
 ```
 class Outer {
 	//내부 클래스를 사용하려면 명시적으로 inner 키워드를 붙여줘야한다.
 	inner class Inner{
-    
+
 	// 내부 클래스에서 외부 클래스 참조 얻기 this@외부 클래스명
-    	fun getOuterReference(): Outer = this@Outer 
+    	fun getOuterReference(): Outer = this@Outer
     }
 
 }
@@ -231,7 +231,7 @@ class User(val nickname: String)
 ```
 class User constructor(_nickname: String){
     val nickname: String
-    
+
     init{
     	nickname = _nickname
     }
@@ -259,7 +259,7 @@ class TextView: View {
 	constructor(context: Context) : this(context, null){
   		...
    	}
-    
+
   	constructor(context: Context, attr: AttributeSet) : super(context, attr){
    	 	...
     	}
