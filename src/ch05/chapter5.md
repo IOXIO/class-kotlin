@@ -108,7 +108,7 @@ run { println(42) }
 people.maxBy { it.age }
 people.maxBy({ p:Person -> p.age })
 people.maxBy() { p:Person -> p.age }
-people.maxBy { p:Person -> p.age } // 인자가 하나일때만 가능
+people.maxBy { p:Person -> p.age } // 인자가 하나일때만 가능 ()가 생략된
 ```
 > 이름 붙인 인자를 사용해 람다 넘기기
 ```
@@ -227,11 +227,13 @@ fun main(args: Array<String>) {
 data class Person(val name: String, val age: Int)
 
 fun main(args: Array<String>) {
-  val createPerson = ::Person
+  val createPerson = ::Person*
   val p = createPerson("Alice", 29)
   println(p)  // 실행결과 Person(name=Alice, age=29)
 }
 ```
+* 코틀린은 데이터와 타입(클래스)를 명확히 구분
+
 > 확장함수도 ::가능
 ```
 fun Person.isAdult() = age >= 21
@@ -314,7 +316,7 @@ val people = listOf(Person("Alice", 27), Person("Bob", 31))
 people.all(canBeInClub27) // false
 people.any(canBiInClub27) // true
 people.count(canBeInClub27)  // 1
-people.fing(canBeInClub27)  // Person(name=Alice, age=27)
+people.find(canBeInClub27)  // Person(name=Alice, age=27)
 ```
 > all, any - !(모두 3인지) = 3이 아닌 게 하나라도 있는지
 ```
@@ -364,6 +366,7 @@ println(boos.flatMap { it.authors }.toSet())
 # 5.3 지연 계산(lazy) 컬렉션 연상
 * 컬렉션: 함수 연쇄하는 과정중에 결과 컬렉션을 즉시 생성
 * 시퀀스: 컬렉션 함수에서 연쇄하는 과정 중 임시 컬렉션을 생성하지 않음
+* 클로저 기반 fnjs에서는 파이프로 처리.
 ```
 people.map(Person::name)  // 임시 컬렉션 생성
   .filter { it.startsWith("A") }
@@ -376,6 +379,8 @@ people.asSequence()
 ```
 > 시퀀스 인터페이스
 * iterator 메소드만 존재 (iterator 방향이 다르다)
+* 로직에 문제가 없는 한 반환 COUNT가 적은 것에서 많은 순서로..
+  (map - filter -> filter - map)
 * asSequenc 확장 함수를 호출하면 어떤 컬렉션이든 시퀀스로 변경 가능
 * 항상 시퀀스가 좋은것만은 아니다.
 
@@ -520,3 +525,12 @@ fun main(args: Array<String>) {
 }
 ```
 # 5.6 요약
+* 람다를 사용하면 코드 조각을 다른 함수에게 인자로 넘길 수 있다.
+* 코틀린에서는 람다가 함수 인자인 경우 괄호 밖으로 람다를 빼낼 수 있고, 람다의 인자가 단 하나뿐인 경우 인자 이름을 지정하지 앟고 it이라는 디폴트 이름으로 부를 수 있다.
+* 람다 안에 있는 코드는 그 람다가 들어있는 바깥 함수의 변수를 읽거나 쓸 수 있다.
+* 메소드, 생성자, 프로퍼티의 이름 앞에 ::을 붙이면 각각에 대한 참조를 만들 수 있다. 그런 참조를 람다 대신 다른 함수에게 넘길 수 있다.
+* filter, map, all, any 등의 함수를 활용하면 컬렉션에 대한 대부분의 연산을 직접 원소를 이터레이션하지 않고 수행할 수 있다.
+* 시퀀스를 사용하면 중간 결과를 담는 컬렉션을 생성하지 않고도 컬렉션에 대한 여러 연산을 조합할 수 있다.
+* 함수형 인터페이스(추상 메소드가 단 하나뿐이 SAM 인터페이스)를 인자로 받는 자바함수를 호출할 경우 람다를 함수형 인터페이스 인자 대신 넘길 수 있다.
+* 수신 객체 지정 람다를 사용하면 람다 안에서 미리 정해둔 수식 객체의 메소드를 직접 호출할 수 있다.
+* 표준 라이브러리의 with 함수를 사용하면 어떤 객체에 대한 참조를 반복해서 언급하지 않으면서 그 객체의 메소드를 호출할 수 있다. apply를 사용하면 어떤 객체라도 빌더 스타일의 API를 사용해 생성하고 초기화할 수 있다.
