@@ -1,0 +1,1 @@
+button.setOnClickListener { /* 클릭 시 수행할 동작 */}
