@@ -112,7 +112,7 @@ private class SynchronizedLazyImpl<out T>(initializer: () -> T, lock: Any? = nul
 | -------- | ---------- | ---------- | ---------- | ---------- | ---------- | ---------- |
 |  이항 산술 연산자  | a * b  | operator  | times  | 다른타입 가능  | 다른타입 가능  | *= 도 지원 |
 |  이항 산술 연산자  | a / b  | operator  | div  | 다른타입 가능  | 다른타입 가능  | /= 도 지원 |
-|  이항 산술 연산자  | a % b  | operator  | rem(1.1미만 mod)  | 다른타입 가능  | 다른타입 가능  | %= 도 지원 |
+|  이항 산술 연산자  | a % b  | operator  | rem<br/>(1.1미만 mod)  | 다른타입 가능  | 다른타입 가능  | %= 도 지원 |
 |  이항 산술 연산자  | a + b  | operator  | plus  | 다른타입 가능  | 다른타입 가능  | += 도 지원 |
 |  이항 산술 연산자  | a - b  | operator  | minus  | 다른타입 가능  | 다른타입 가능  | -= 도 지원 |
 |  비트 연산자  | shl  | -  | -  | -  | -  | 왼쪽 시프트(<<) |
@@ -126,18 +126,17 @@ private class SynchronizedLazyImpl<out T>(initializer: () -> T, lock: Any? = nul
 |  복합 대입 연산자  | a -= b  | operator  | minusAssign  | 다른타입 가능  | Unit  |  |
 |  복합 대입 연산자  | a *= b  | operator  | timesAssign  | 다른타입 가능  | Unit  |  |
 |  복합 대입 연산자  | a /= b  | operator  | divAssign  | 다른타입 가능  | Unit  |  |
-|  복합 대입 연산자  | a %= b  | operator  | remAssign(1.1 미만 modAssign)  | 다른타입 가능  | Unit  |  |
+|  복합 대입 연산자  | a %= b  | operator  | remAssign<br/>(1.1 미만 modAssign)  | 다른타입 가능  | Unit  |  |
 |  단항 연산자  | +a  | operator  | unaryPlus  | -  | 다른타입 가능  |  |
 |  단항 연산자  | -a  | operator  | unaryMinus  | -  | 다른타입 가능  |  |
 |  단항 연산자  | !a  | operator  | not  | -  | 다른타입 가능  |  |
-|  단항 연산자  | ++a, a++  | operator  | inc  | -  | 수신객체 타입  |  |
-|  단항 연산자  | --a, a--  | operator  | dec  | -  | 수신객체 타입  |  |
-|  동등성 연산자  | ==, !=  | override  | equals  | Any?  | Boolean  | null 체크 및 타입 체크 필요 |
-|  순서 연산자  | "a > b, a < b,  ||||||
-|  a >= b, a <= b"  | override  | compareTo  | 수신객체 타입  | Int  |  ||
+|  단항 연산자  | ++a<br/>a++  | operator  | inc  | -  | 수신객체 타입  |  |
+|  단항 연산자  | --a<br/>a--  | operator  | dec  | -  | 수신객체 타입  |  |
+|  동등성 연산자  | ==<br/>!=  | override  | equals  | Any?  | Boolean  | null 체크 및 타입 체크 필요 |
+|  순서 연산자  | a > b<br/>a < b<br/>a >= b<br/>a <= b"  | override  | compareTo  | 수신객체 타입  | Int  |  ||
 |  컬렉션  | a[i]  | operator  | get  | 다른타입 가능  | 다른타입 가능  |  |
 |  컬렉션  | a[i] = b  | operator  | set  | 다른타입 가능  | Unit  |  |
-|  범위  | a in b, a !in b  | operator  | contains  | 다른타입 가능  | Boolean  |  |
+|  범위  | a in b<br/>a !in b  | operator  | contains  | 다른타입 가능  | Boolean  |  |
 |  범위  | a..b  | operator  | rangeTo  | 다른타입 가능  | ClosedRange<T>  |  |
 |  범위  | for(b in a)  | operator  | iterator  | -  | Iterator  |  |
 |  구조분해  | val (a, b) = c  | operator  | componentN(1~)  | -  | 프로퍼티 타입  | data class는 5개까지 자동으로 지원하며 주생성자의 파라미터 순서대로 |
