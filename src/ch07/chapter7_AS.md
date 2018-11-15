@@ -119,7 +119,7 @@ private class SynchronizedLazyImpl<out T>(initializer: () -> T, lock: Any? = nul
 |  비트 연산자  | shr  | -  | -  | -  | -  | 오른쪽 시프트(부호 비트 유지, >>) |
 |  비트 연산자  | ushr  | -  | -  | -  | -  | 오른쪽 시프트(0으로 부호 비트 설정, >>>) |
 |  비트 연산자  | and  | -  | -  | -  | -  | 비트 곱 (&) |
-|  비트 연산자  | or  | -  | -  | -  | -  | 비트 합 (|) |
+|  비트 연산자  | or  | -  | -  | -  | -  | 비트 합 (|
 |  비트 연산자  | xor  | -  | -  | -  | -  | 비트 배타 합 (^) |
 |  비트 연산자  | inv  | -  | -  | -  | -  | 비트반전 (~) |
 |  복합 대입 연산자  | a += b  | operator  | plusAssign  | 다른타입 가능  | Unit  |  |
@@ -133,15 +133,14 @@ private class SynchronizedLazyImpl<out T>(initializer: () -> T, lock: Any? = nul
 |  단항 연산자  | ++a, a++  | operator  | inc  | -  | 수신객체 타입  |  |
 |  단항 연산자  | --a, a--  | operator  | dec  | -  | 수신객체 타입  |  |
 |  동등성 연산자  | ==, !=  | override  | equals  | Any?  | Boolean  | null 체크 및 타입 체크 필요 |
-|  순서 연산자  | "a > b, a < b,  |
-|  a >= b, a <= b"  | override  | compareTo  | 수신객체 타입  | Int  |  |
+|  순서 연산자  | "a > b, a < b,  ||||||
+|  a >= b, a <= b"  | override  | compareTo  | 수신객체 타입  | Int  |  ||
 |  컬렉션  | a[i]  | operator  | get  | 다른타입 가능  | 다른타입 가능  |  |
 |  컬렉션  | a[i] = b  | operator  | set  | 다른타입 가능  | Unit  |  |
 |  범위  | a in b, a !in b  | operator  | contains  | 다른타입 가능  | Boolean  |  |
 |  범위  | a..b  | operator  | rangeTo  | 다른타입 가능  | ClosedRange<T>  |  |
 |  범위  | for(b in a)  | operator  | iterator  | -  | Iterator  |  |
 |  구조분해  | val (a, b) = c  | operator  | componentN(1~)  | -  | 프로퍼티 타입  | data class는 5개까지 자동으로 지원하며 주생성자의 파라미터 순서대로 |
-|  위임 프로퍼티  | var a: Type by Delegate  | -  | -  | -  | -  | "Type, Delegate 클래스 생성 |
-|  Delegate 클래스는 getValue/setValue 메소드 필요" |
+|  위임 프로퍼티  | var a: Type by Delegate  | -  | -  | -  | -  | Type, Delegate 클래스 생성<br/>Delegate 클래스는 getValue/setValue 메소드 필요 |
 |  위임 프로퍼티  | val a by lazy  | -  | -  | -  | -  | val a by lazy { 람다 } |
 
