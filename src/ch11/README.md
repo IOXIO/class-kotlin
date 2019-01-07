@@ -1,7 +1,7 @@
 <!-- $theme: default -->
 <!-- $size: A3 -->
 
-Chapter#11 DSL 만들기
+Chapter#11 / DSL 만들기
 ================
 
 ### Features

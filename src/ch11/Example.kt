@@ -1,10 +1,12 @@
 package ch11
 
+import java.lang.StringBuilder
+
 fun main(args: Array<String>) {
     val bsInstance = BuildString()
-    val s1 = bsInstance.withHigherOrderFunction {
-        it.append("Hello, ")
-        it.append("World")
+    val s1 = bsInstance.withHigherOrderFunction(::testFun)
+    val s3 = bsInstance.withHigherOrderFunction {
+
     }
 
     val s2 = bsInstance.withLambdaReceiver {
@@ -36,4 +38,10 @@ fun main(args: Array<String>) {
     val invokeClassInstance = InvokeClass()
     // invokeClassInstance.invoke("Cro")
     invokeClassInstance("Cro")
+
+    val sb = StringBuilder()
+}
+
+fun testFun(sb: StringBuilder) {
+    sb.append("Hello")
 }
